@@ -1,15 +1,15 @@
 import { useContext, useState } from "react"
-import UserProfile from "./UserProfile";
-import TranslateContext from "./TranslateContext";
+import UserProfile from "../user-profile/UserProfile";
+import TranslateContext from "../translate-context/TranslateContext";
+import { Link } from "react-router-dom";
 
 export default function () {
     const [isShow, setShow] = useState(false);
-
-    const t = useContext(TranslateContext);
+    const t = useContext(TranslateContext).lang;
     return (
         <>
             <div className="header">
-                <div className="logo"></div>
+                <Link to={"/"}><div className="logo"></div></Link>
                 <div className="menu">
                     <div className="menu_2">
                         <ul>

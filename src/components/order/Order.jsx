@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import TranslateContext from "./TranslateContext"
+import TranslateContext from "../translate-context/TranslateContext"
 
 export default function(){
-    const t = useContext(TranslateContext);
+    const t = useContext(TranslateContext).lang;
     return(
         <div className="order">
             <div className="order_logo"></div>

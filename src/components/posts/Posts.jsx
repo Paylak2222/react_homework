@@ -1,10 +1,10 @@
 import { useCallback, useContext, useMemo, useState } from "react";
-import Doctors from "./Doctors";
-import Post from "./Post";
-import TranslateContext from "./TranslateContext";
+import Doctors from "../doctors/Doctors";
+import Post from "../post/Post";
+import TranslateContext from "../translate-context/TranslateContext";
 
 export default function(){
-    const t = useContext(TranslateContext);
+    const t = useContext(TranslateContext).lang;
     const [isShow, setShow] = useState(false);
     const [state, setState] = useState(0);
 
