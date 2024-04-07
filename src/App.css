@@ -800,10 +800,6 @@ u {
   background-color: #56CCF2;
   cursor: pointer;
 }
-.active_span{
-  background-color: #F6F8FB;
-  border-radius: 20px;
-}
 
 .profile_doctor {
   width: 100%;

@@ -1,21 +1,25 @@
 import { useParams } from "react-router-dom"
 import Doctors from "../doctors/Doctors"
-import { useContext } from "react"
+import { useContext, useMemo } from "react"
 import TranslateContext from "../translate-context/TranslateContext"
 
 
 export default function(){
     const t = useContext(TranslateContext).lang
     const {userId} = useParams()
-    const user = Doctors.doc(t);
-    let res = user.filter((us)=>us.userId == userId);
-    res = res[0];
+    
+
+    const res = useMemo(()=>{
+        const user = Doctors.doc(t);
+    return user.find((us)=>us.userId == userId);
+    },[t,userId])
+    if(!res) return <div>Not Found</div>
     return(
         <>
             <div className="profile_doctor">
                 <div className="profile_1">
-                    <span>{t.doctor} ></span>
-                    <span>{res.profession} ></span>
+                    <span>{t.doctor} &gt;</span>
+                    <span>{res.profession} &gt;</span>
                     <p className="active_span">{t.doctor_profile}</p> 
                     <div className="prof">
                       <div className="profile_logo" style={{backgroundImage: `url("${res.image}")` }}></div> 
