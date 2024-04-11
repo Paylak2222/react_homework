@@ -93,7 +93,9 @@ const en = {
         month:"Per month",
         all:"During all this time",
         popolnenie:"Replenishment",
-        oplota:"Payment for consultation"
+        oplota:"Payment for consultation",
+        doctors:"Doctors",
+        choose_cat:"Choose category"
       }
       
       const ru = {
@@ -190,7 +192,9 @@ const en = {
         month:"За месяц",
         all:"За все время",
         popolnenie:"Пополнения",
-        oplota:"Оплата за консультацию"
+        oplota:"Оплата за консультацию",
+        doctors:"Врачи",
+        choose_cat:"Выберите категорию"
       }
 
     export default {en,ru}

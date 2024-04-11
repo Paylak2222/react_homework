@@ -30,6 +30,7 @@ function App() {
         </Routes>
         <Footer />
       </TranslateContext.Provider>
+      
     </div>
   );
 }
