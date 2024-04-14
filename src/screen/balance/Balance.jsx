@@ -1,27 +1,28 @@
 import { useContext } from "react"
 import TranslateContext from "../../components/translate-context/TranslateContext"
+import { useTranslation } from "react-i18next"
 
 
 export default function(){
-    const t = useContext(TranslateContext).lang;
+    const {t} = useTranslation();
     return(
         <>  <div className="balanc">
-                <h3>{t.balanc}</h3>
+                <h3>{t("balanc")}</h3>
                 <div className="rubli">
                     <h1>1 058,68 Р</h1>
-                    <button>{t.rubli}</button>
+                    <button>{t("rubli")}</button>
                 </div>
-                <h5>{t.history}</h5>
+                <h5>{t("history")}</h5>
                 <div className="post_title bal">
-                    <span>{t.today}</span>
-                    <span>{t.month}</span>
-                    <span>{t.all}</span>
+                    <span>{t("today")}</span>
+                    <span>{t("month")}</span>
+                    <span>{t("all")}</span>
                 </div>
                 <div className="payment">
                     <div className="payment_logo"></div>
                     <span>10.03.2021</span>
                     <div className="con">
-                       <span>{t.popolnenie}</span> 
+                       <span>{t("popolnenie")}</span> 
                     </div>          
                     <div className="price">
                          <h4>+ 560,00 Р</h4>
@@ -31,7 +32,7 @@ export default function(){
                     <div className="payment_logo_user"></div>
                     <span>10.03.2021</span>
                     <div className="con">
-                       <span>{t.oplota}</span> 
+                       <span>{t("oplota")}</span> 
                     </div>          
                     <div className="price">
                          <h6>- 900,00 Р</h6>
@@ -41,7 +42,7 @@ export default function(){
                     <div className="payment_logo_user"></div>
                     <span>10.03.2021</span>
                     <div className="con">
-                       <span>{t.oplota}</span> 
+                       <span>{t("oplota")}</span> 
                     </div>          
                     <div className="price">
                          <h6>- 900,00 Р</h6>
@@ -51,7 +52,7 @@ export default function(){
                     <div className="payment_logo"></div>
                     <span>10.03.2021</span>
                     <div className="con">
-                       <span>{t.popolnenie}</span> 
+                       <span>{t("popolnenie")}</span> 
                     </div>          
                     <div className="price">
                          <h4>+ 560,00 Р</h4>

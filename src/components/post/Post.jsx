@@ -1,28 +1,28 @@
 import { useContext } from "react"
 import TranslateContext from "../translate-context/TranslateContext"
-import Doctors from "../doctors/Doctors"
+import users from "../doctors/Doctors"
 import { Link } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 export default function(props){
-    const t = useContext(TranslateContext).lang;
+    const {t} = useTranslation();
 
-    let user = Doctors.doc(t);
-    let res = user.filter((us)=>us.status === props.state);
+    let res = users.filter((us)=>us.status === props.state);
     if(res.length === 0){
-        res = user;
+        res = users;
     }
     return(
         <>
         {   
         res.map((item,index)=>{
             if(item.status === "1"){
-                item.o = t.zaplanir
+                item.o = t("zaplanir")
                 item.clas = "ordered"
             }else if(item.status === "2"){
-                item.o = t.sostayal
+                item.o = t("sostayal")
                 item.clas = "pasted"
             }else{
-                item.o = t.otmen
+                item.o = t("otmen")
                 item.clas = "otmen"
             }
             return (
@@ -38,7 +38,7 @@ export default function(props){
                 </div>
                 <div className="first">
                     <div className="first_logo third_logo"></div>
-                    <span>{t.video}</span>
+                    <span>{t("video")}</span>
                 </div>
                 <div className={item.clas}>
                     <span>{item.o}</span>
@@ -53,8 +53,8 @@ export default function(props){
                         <span className="pi_2">{item.experience}</span>
                     </div>
                     <div className="second_info">
-                       <Link to={`/${item.userId}`}> <button className="second_info_but1">{t.look}</button></Link>
-                        <button className="second_info_but2">{t.look2}</button>
+                       <Link to={`/${item.userId}`}> <button className="second_info_but1">{t("look")}</button></Link>
+                        <button className="second_info_but2">{t("look2")}</button>
                     </div>
                 </div>
             </div>

@@ -15,11 +15,8 @@ import Balance from './screen/balance/Balance';
 
 
 function App() {
-  const [lang, setLang] = useState(Translate.ru);
-
   return (
     <div className="App">   
-      <TranslateContext.Provider value={{lang,setLang}}>
         <Header />
         <Language />
         <Routes>
@@ -29,7 +26,6 @@ function App() {
           <Route path='/balance' element={<Balance />}/>
         </Routes>
         <Footer />
-      </TranslateContext.Provider>
       
     </div>
   );
