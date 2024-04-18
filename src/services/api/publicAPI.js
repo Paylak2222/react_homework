@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const publicAPI = axios.create({
-    baseURL:"https://jsonplaceholder.typicode.com/"
+    baseURL:"https://api.allodoc.md/users"
 })
 
 export default publicAPI;

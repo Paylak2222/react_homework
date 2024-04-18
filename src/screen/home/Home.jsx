@@ -10,8 +10,8 @@ export default function(){
         <>
             <Section />
             <Order />
-            {/* <Posts /> */}
-            <Professions />
+            <Posts />
+            {/* <Professions /> */}
         </>
     )
 }
