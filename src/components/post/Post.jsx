@@ -1,25 +1,34 @@
-import { useContext, useEffect, useState } from "react"
-import TranslateContext from "../translate-context/TranslateContext"
-import users from "../doctors/Doctors"
-import { Link, json } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import publicAPI from "../../services/api/publicAPI"
 import i18n from "../../services/i18n"
+import { useDispatch, useSelector } from "react-redux"
+import { doctorAction } from "../../store/actions"
+import { doctorSelector } from "../../store/selectors"
+
 
 export default function(props){
     const {t} = useTranslation();
-    const [res,setRes] = useState([]);
+    const [loading,setLoading] = useState(true)
+    const {data} = useSelector(doctorSelector)
+    const dispatch = useDispatch()
+    
+    
 
     useEffect(()=>{
-        publicAPI.get(`get-doctors/?page=1&category=${props.state}`).then((res)=>{
-           setRes(res.data.results)
+        publicAPI.get(`get-doctors/?page=1&category=${props.state}`).then(data=>{  
+            dispatch(doctorAction.setUser(data))
+            setLoading(false)
         })
-    },[props.state])  
+    },[props.state])
 
+    console.log(data);
+    
     return(
         <>
-        {   
-        res.map((item,index)=>{
+        {loading?"loading": 
+        data.results.map((item,index)=>{
             return (
                 
                 <div key={index} className="main_post">
@@ -28,10 +37,6 @@ export default function(props){
                     <div className="first_logo"></div>
                     <span>{item.near_date} </span>
                 </div>
-                {/* <div className="first ss">
-                    <div className="first_logo second_logo"></div>
-                    <span>{item.time}</span>
-                </div> */}
                 <div className="first">
                     <div className="first_logo third_logo"></div>
                     <span>{t("video")}</span>

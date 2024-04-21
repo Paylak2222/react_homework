@@ -4,6 +4,8 @@ import TranslateContext from "../translate-context/TranslateContext";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userActions } from "../../store/actions";
 
 export default function () {
     const [isShow, setShow] = useState(false);
@@ -25,9 +27,12 @@ export default function () {
             setShow(false)
         }
     },[isShow]);
+
+
     
     return (
         <>
+
             <div className="header">
                 <Link to={"/"}><div className="logo"></div></Link>
                 <div className="menu">

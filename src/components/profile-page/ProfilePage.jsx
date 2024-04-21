@@ -5,41 +5,45 @@ import TranslateContext from "../translate-context/TranslateContext"
 import { useTranslation } from "react-i18next"
 import publicAPI from "../../services/api/publicAPI"
 import i18n from "../../services/i18n"
+import { useDispatch, useSelector } from "react-redux"
+import { doctorAction } from "../../store/actions"
+import { doctorSelector, profileSelector } from "../../store/selectors"
 
 
-export default function(){
-    // const t = useContext(TranslateContext).lang
-    const {t} = useTranslation();
-    const {userId} = useParams();
-    const [doc , setDoc] = useState();
+export default function () {
+    const { t } = useTranslation();
+    const { userId } = useParams();
+    const [loading, setLoading] = useState(true)
 
-    useEffect(()=>{
-        publicAPI.get(`/user/${userId}/?role=doctor`).then((doc)=>{
-           setDoc(doc.data)
+   
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        publicAPI.get(`/user/${userId}/?role=doctor`).then(doc => {
+            dispatch(doctorAction.getDoctor(doc))
+            setLoading(false)
         })
-    },[]) 
+    }, [])
 
+    const doc = useSelector(doctorSelector)
 
-    if(!doc) {
-        return <div>Not Found</div>
-    }
-    else{
-       return(
-        <>
-            <div className="profile_doctor">
+    return (
+       loading?"loading":
+       <>  
+         <div className="profile_doctor">
                 <div className="profile_1">
                     <span>{t("doctor")} &gt;</span>
                     <span>{i18n.language === "ru" ? doc.user_categories[0].category.title.ru : doc.user_categories[0].category.title.ro} &gt;</span>
-                    <p className="active_span">{t("doctor_profile")}</p> 
+                    <p className="active_span">{t("doctor_profile")}</p>
                     <div className="prof">
-                      <div className="profile_logo" style={{backgroundImage: `url("${doc.profile_image}")` }}></div> 
-                      <div className="profile_desc">
-                        <h3>{doc.first_name} {doc.last_name}</h3>
-                        <h4>{i18n.language === "ru" ? doc.user_categories[0].category.title.ru : doc.user_categories[0].category.title.ro}</h4>
-                        <h5>{t("exper")} {new Date().getFullYear() - doc.doctor_details.excperience_start_year} {t("year")}</h5>
-                      </div>
+                        <div className="profile_logo" style={{ backgroundImage: `url("${doc.profile_image}")` }}></div>
+                        <div className="profile_desc">
+                            <h3>{doc.first_name} {doc.last_name}</h3>
+                            <h4>{i18n.language === "ru" ? doc.user_categories[0].category.title.ru : doc.user_categories[0].category.title.ro}</h4>
+                            <h5>{t("exper")} {new Date().getFullYear() - doc.doctor_details.excperience_start_year} {t("year")}</h5>
+                        </div>
                     </div>
-                    
+
                 </div>
                 <div className="profile_2">
                     <p>{doc.doctor_details.price} ₽ / {t("con")}</p>
@@ -64,12 +68,11 @@ export default function(){
                 <p>{i18n.language === "ru" ? doc.user_categories[0].category.description.ru : doc.user_categories[0].category.description.ro}</p>
                 <div className="row">
                     <div className="calendar znak"></div>
-                    <span>{ t("other")}</span>
+                    <span>{t("other")}</span>
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: doc.doctor_details.extra_info }} />
             </div>
+
         </>
-    ) 
-    }
-    
+    )
 }
