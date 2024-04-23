@@ -1,7 +1,9 @@
-const DOC = "DoctorTypes@DOC";
-const GET_DOC = "DoctorTypes@GET_DOC";
+const REQUEST = "DoctorTypes@REQUEST";
+const REJECT = "DoctorTypes@REJECT";
+const RESOLVE = "DoctorTypes@RESOLVE"
 
 export {
-    DOC,
-    GET_DOC
+    REQUEST,
+    REJECT,
+    RESOLVE
 }

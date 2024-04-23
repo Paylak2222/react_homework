@@ -1,3 +1,4 @@
-import * as doctorAction from "./doctorAction"
+import * as doctorsAction from "./doctorsAction";
+import * as doctorProfileAction from "./doctorProfileAction"
 
-export {doctorAction}
+export {doctorsAction,doctorProfileAction}

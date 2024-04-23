@@ -1,5 +1,7 @@
-import {doctorSelector} from "./doctorSelector"
+import * as doctorProfileSelectors from "./doctorProfileSelector"
+import * as doctorsSelectors from "./doctorsSelector"
 
 export {
-    doctorSelector,
+    doctorProfileSelectors,
+    doctorsSelectors
 }

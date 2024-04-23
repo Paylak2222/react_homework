@@ -1,34 +1,26 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import publicAPI from "../../services/api/publicAPI"
 import i18n from "../../services/i18n"
 import { useDispatch, useSelector } from "react-redux"
-import { doctorAction } from "../../store/actions"
-import { doctorSelector } from "../../store/selectors"
+import { doctorsAction } from "../../store/actions"
+import { doctorsSelectors } from "../../store/selectors"
 
 
 export default function(props){
     const {t} = useTranslation();
-    const [loading,setLoading] = useState(true)
-    const {data} = useSelector(doctorSelector)
+    const {loading,list,error} = useSelector(doctorsSelectors.doctorsSelector)
     const dispatch = useDispatch()
-    
     
 
     useEffect(()=>{
-        publicAPI.get(`get-doctors/?page=1&category=${props.state}`).then(data=>{  
-            dispatch(doctorAction.setUser(data))
-            setLoading(false)
-        })
+            dispatch(doctorsAction.get(props.state))
     },[props.state])
 
-    console.log(data);
-    
     return(
         <>
         {loading?"loading": 
-        data.results.map((item,index)=>{
+        list.map((item,index)=>{
             return (
                 
                 <div key={index} className="main_post">

@@ -1,8 +1,10 @@
 import {combineReducers} from "redux"
-import doctorReducer from "./doctorReducer";
+import doctorsReducer from "./doctorsReducer";
+import doctorProfileReducer from "./doctorProfileReducer";
 
 const reducers = combineReducers({
-    doctors:doctorReducer,
+    doctors:doctorsReducer,
+    doctorProfile:doctorProfileReducer
 });
 
 export default reducers;
